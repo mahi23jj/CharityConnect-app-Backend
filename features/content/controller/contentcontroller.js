@@ -1,4 +1,5 @@
 const content = require('../model/contentmodel')
+const Event = require('../model/eventmodel')
 
 module.exports={
     createContent:async(req,res)=>{

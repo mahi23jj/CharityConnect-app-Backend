@@ -35,3 +35,12 @@ module.exports={
     },
 
 }
+
+// Challenge Friends – “I just donated \$5 to TreeNation. Can you match it?” 
+// rating 
+// share 
+// notification
+// get a coin
+// propose idea .
+
+

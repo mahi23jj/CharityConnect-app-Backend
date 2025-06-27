@@ -8,6 +8,11 @@ const contentSchema = new mongoose.Schema({
     },
     discription: String,
     image_url:String,
+    catagory:{
+        type:String,
+        default:'info'
+    }
+    
 });
 const Content = mongoose.model('Content', contentSchema);
 
