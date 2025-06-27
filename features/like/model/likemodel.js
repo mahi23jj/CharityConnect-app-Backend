@@ -1,25 +1,21 @@
 const mongoose = require('mongoose');
 
-const commentSchema = new mongoose.Schema({
-  contentid:{
+const likeSchema = new mongoose.Schema({
+  contentlike:{
     type:mongoose.Schema.Types.ObjectId,
     ref: 'Content',
     default:null
   },
-  replayto:{
+  commentlike:{
     type:mongoose.Schema.Types.ObjectId,
     ref: 'comment',
      default:null
   },
-  username : {
+  userid : {
     type:mongoose.Schema.Types.ObjectId,
     ref: 'user',
     required:true
    },
-  comment : {
-    type: String,
-    required: true
-  },
   time: {
     type: Date,
     default: Date.now
@@ -27,5 +23,7 @@ const commentSchema = new mongoose.Schema({
   // Add any other optional fields here
 });
 
-const comment = mongoose.model('comment', commentSchema);
-module.exports = comment;
+// likeSchema.index({userid:1},{unique:true})
+
+const like = mongoose.model('like', likeSchema);
+module.exports = like;

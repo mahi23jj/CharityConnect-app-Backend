@@ -3,6 +3,7 @@ const express = require('express')
 const registration = require('./features/autentication/router/user_router')
 const content = require('./features/content/router/contentrouter')
 const comment = require('./features/comment/router/commentrouter')
+const like = require('./features/like/route/likerouter')
 const db = require('./config/db')
 const app= express()
 db()
@@ -14,6 +15,7 @@ app.use(express.json())
 app.use('/api/auth',registration)
 app.use('/api/content',content)
 app.use('/api/comment',comment)
+app.use('/api/like',like)
 
 
 app.listen(3000,
