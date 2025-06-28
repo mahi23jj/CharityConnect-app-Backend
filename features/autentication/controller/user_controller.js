@@ -15,7 +15,7 @@ module.exports={
         const org = await organization.find();
         res.status(200).json(org)
     },
-     getorganizationbyid:async (req,res)=>{
+    getorganizationbyid:async (req,res)=>{
         const org = await organization.findById(req.params.id);
         res.status(200).json(org)
     },
