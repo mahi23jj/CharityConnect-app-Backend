@@ -8,14 +8,8 @@ const contentSchema = new mongoose.Schema({
     },
     discription: String,
     image_url:String,
-    likes:{
-        type:[String],
-        default:[]
-    },
-    Follow:{
-        type:[String],
-        default:[]
-    }
+   
+
     
 });
 const Content = mongoose.model('Content', contentSchema);

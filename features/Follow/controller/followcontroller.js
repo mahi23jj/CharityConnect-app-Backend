@@ -11,7 +11,7 @@ module.exports={
             if(exist){
                    await follow.findOneAndDelete({userid:userid,contentfollow:contentid});
                     res.status(200).json({
-                        message:'unfollow'
+                        follow:false
                     }
                     );
             }else{
@@ -22,7 +22,7 @@ module.exports={
                     }
                 )
               await followdata.save()
-            res.status(200).json(followdata);
+            res.status(200).json( {follow:true});
             }
         }catch (err){
             res.status(400).json({message:err.message})

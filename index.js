@@ -3,7 +3,8 @@ const express = require('express')
 const registration = require('./features/autentication/router/user_router')
 const content = require('./features/content/router/contentrouter')
 const comment = require('./features/comment/router/commentrouter')
-const like = require('./features/content/router/likerouter')
+const like = require('./features/like/route/likerouter')
+const Follow = require('./features/Follow/router/followrouter')
 const db = require('./config/db')
 const cors = require('cors');
 const app= express()
@@ -19,6 +20,7 @@ app.use('/api/auth',registration)
 app.use('/api/content',content)
 app.use('/api/comment',comment)
 app.use('/api/like',like)
+app.use('/api/Follow',Follow)
 
 
 app.listen(5000,
