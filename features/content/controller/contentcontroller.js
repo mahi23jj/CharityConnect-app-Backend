@@ -1,6 +1,6 @@
 const content = require('../model/contentmodel')
 const like = require('../../like/model/likemodel')
-const Event = require('../model/eventmodel')
+const Event = require('../../Event/model/eventmodel')
 const follow = require('../../Follow/model/followmodel')
 
 module.exports={

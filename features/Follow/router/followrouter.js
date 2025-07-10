@@ -7,7 +7,7 @@ const router = express.Router()
 
 // router.get('/content/:id',controller.getfollows);
 router.post('/content/:id',controller.togglefollow);
-router.get('/content/count',controller.contentfollows);
+router.get('/content/count',controller.countfollows);
 
 
 
