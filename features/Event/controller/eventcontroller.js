@@ -1,7 +1,6 @@
 const event = require('../model/eventmodel')
 const register = require('../../Register/model/registermodel')
-const registercontroler = require('../../Register/controller/registercontroller')
-const { set } = require('../../..')
+
 
 module.exports = {
     // help for posting events for creators
