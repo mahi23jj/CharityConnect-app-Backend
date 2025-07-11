@@ -58,6 +58,9 @@ const organizationSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
+  certifications :{
+    type : [String],
+  },
   address:{ 
     type:[
       {
