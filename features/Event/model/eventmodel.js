@@ -26,14 +26,60 @@ const EventSchema = new mongoose.Schema({
         required:true
     }, 
     supportgroup:{
-        type:String,
-        required:true
+        main:{
+            type:[String],
+               enum: [
+                'Education Access',
+                'Gender Equality',
+                'Health & Wellness',
+                'Mental Health Support',
+                'Human Rights',
+                'Environmental Justice',
+                'Economic Empowerment',
+                'Food Security',
+                'Domestic Violence',
+                // 'Drug & Alcohol',
+            ], 
+            required:true
+        },
+        sub:{
+            type:[String],
+             enum :[
+                   'Cancer',
+                   'HIV & AIDS',
+                    'parkinson',
+                    'Autism',
+                    'FND',
+                    'Anxiety',
+                    'Depression',
+                    'Parkinson',
+                    'PTSD',
+                    'Epilepsy',
+                    'ADHD',
+                    'Down Syndrome',
+            ],
+        }
     },
     eventcause:{
-        type:String,
+        type:[String],
+          enum: [
+            'Women & Girls',
+            'Children & Youth',
+            'Elderly / Seniors',
+            'People with Disabilities',
+            'Refugees & Migrants',
+            'Indigenous Communities',
+            'Veterans & Military Families',
+            'Minority Communities',
+            'Poverty',
+            ],
         required:true
     },
     memories:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref : 'memories'
+    },
+    relatedpic:{
         type:[String] 
     },
     vipseat:{
