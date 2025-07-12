@@ -1,12 +1,13 @@
-const event = require('../model/eventmodel')
+const events = require('../model/eventmodel')
 const register = require('../../Register/model/registermodel')
+
 
 
 module.exports = {
     // help for posting events for creators
     postevent: async (req, res) => {
         try {
-            const newEvent = new event(req.body)
+            const newEvent = new events(req.body)
             await newEvent.save()
             res.status(200).json(newEvent)
           
@@ -56,7 +57,7 @@ module.exports = {
     }
 
 
-    const events = await event
+    const events = await events
         .find(filter)
         .populate({
             path: 'creator_id',
@@ -64,10 +65,7 @@ module.exports = {
         });
 
 
-    res.status(200).json({
-        count: events.length,
-        data:events
-    });
+    res.status(200).json(events);
     }catch (err) {
       res.status(500).json({
         message: err.message,
@@ -79,11 +77,12 @@ module.exports = {
   // get event by id 
   getEventById: async (req, res) => {
     try {
-      const event = await Event.findById(req.params.id)
+      const eventdetail= await events.findById(req.params.id)
         .populate({
           path: 'creator_id',
           select: 'org_name org_profilepic'
         })
+        res.status(200).json(eventdetail);
     }catch (err) {
       res.status(500).json({
         message: err.message,
@@ -97,20 +96,20 @@ module.exports = {
 
   registerEvent: async (req, res) => {
   try {
-    const userId = req.query.userid;
-    const seatType = req.query.seattype;
+    const {user,seatType} = req.body;
+    const event = await events.findById(req.params.id);
 
-    if (!userId || !seatType) {
+
+    if (!user || !seatType) {
       return res.status(400).json({ message: 'User ID and seat type are required' });
     }
 
-    const event = await Event.findById(req.params.id);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
     // 🔐 Prevent repitative regsitartion
-    const exists = await register.findOne({ user_id: userId, event_id: event._id });
+    const exists = await register.findOne({ user_id: user, event_id: event._id });
     if (exists) return res.status(400).json({ message: 'Already registered for this event' });
 
 
@@ -120,12 +119,12 @@ module.exports = {
     }
 
     // 🪑 Check seat availability
-    if (seatType === 'vip') {
+    if (seatType === 'VIP') {
       if (event.vipseat <= 0) {
         return res.status(400).json({ message: 'VIP seats are not available' });
       }
       event.vipseat--;
-    } else if (seatType === 'normal') {
+    } else if (seatType === 'Normal') {
       if (event.Normalseat <= 0) {
         return res.status(400).json({ message: 'Regular seats are not available' });
       }
@@ -139,15 +138,12 @@ module.exports = {
 
     // 📝 Create registration
     const registered = await register.create({
-      user_id: userId,
-      event_id: event._id,
-      seattype: seatType
+        user: user,
+        event: event._id,
+        seatType: seatType,
     });
 
-    res.status(200).json({
-      message: 'Registration successful',
-      data: registered
-    });
+    res.status(200).json(registered);
 
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -169,8 +165,8 @@ module.exports = {
     // this is for getting all the upcaming events
 //     getupcomingEvent: async (req, res) => {
 //         try {
-//             const userid = req.query.userid;
-//             if (!userid) return res.status(400).json({ message: 'User ID is required' });
+//             const user = req.query.user;
+//             if (!user) return res.status(400).json({ message: 'User ID is required' });
             
 //             // to get the list of all upcoming events
 //             const events = await event
@@ -185,7 +181,7 @@ module.exports = {
             
 //             // to get what user registered for
 //             const registereduser = await register.find({
-//                 user_id: userid,
+//                 user_id: user,
 //                 event_id: {$in: eventids}
 //             }).select('event_id');
 

@@ -21,7 +21,7 @@ const registerschema = mongoose.Schema({
     type: Date,
     default: new Date()
   },
-  
+
 //   status: {
 //     type: String,
 //     enum: ['pending', 'confirmed', 'cancelled'],

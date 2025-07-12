@@ -63,10 +63,11 @@ const EventSchema = new mongoose.Schema({
     eventcause:{
         type:[String],
           enum: [
-            'Women & Girls',
-            'Children & Youth',
-            'Elderly / Seniors',
-            'People with Disabilities',
+           'Women & Girls',
+            'Children',
+            'Youth',
+            'Elderly',
+            'Disabilities',
             'Refugees & Migrants',
             'Indigenous Communities',
             'Veterans & Military Families',
