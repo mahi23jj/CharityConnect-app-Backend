@@ -2,7 +2,7 @@
 
 This is the **backend** of the Charity Connect mobile app, built with **Node.js and Express.js**. It powers the charity organization platform by providing secure, scalable APIs for user profiles, project submissions, filtering, and campaign progress.
 
-> 🔗 Frontend: [Charity Connect Flutter App](https://github.com/yourusername/charity-frontend)
+> 🔗 Frontend: [Charity Connect Flutter App](https://github.com/mahi23jj/CharityConnect-app-Frontend)
 
 ---
 
