@@ -69,7 +69,8 @@ const organizationSchema = new mongoose.Schema({
     sub_city: String,
     postal_code: String
   }
-]
+],
+require:true
 },
   website_url: String,
   org_telegram: String,

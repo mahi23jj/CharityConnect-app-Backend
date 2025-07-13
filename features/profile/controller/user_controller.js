@@ -1,5 +1,6 @@
 const organization = require('../model/organizations_model')
 const users = require('../model/user_model')
+const Event = require('../../Event/model/eventmodel')
 
 module.exports={
     organizational_registration: async (req,res)=>{
@@ -16,8 +17,19 @@ module.exports={
         res.status(200).json(org)
     },
     getorganizationbyid:async (req,res)=>{
-        const org = await organization.findById(req.params.id);
-        res.status(200).json(org)
+     try {
+         const orgId = req.params.id;
+         
+         const org = await organization.findById(orgId);
+         const event = await Event.find({creator_id:orgId});
+
+         res.status(200).json({
+            org,
+            event
+         })  
+     } catch (error) {
+        res.status(400).json(error)
+     }
     },
     user_registration: async (req,res)=>{
          try{
