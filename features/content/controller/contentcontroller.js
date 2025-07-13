@@ -48,7 +48,8 @@ getcontet: async (req, res) => {
         contentfollow : {$in:contentIds}
     }).select('contentfollow');
 
-    const followset = new set(userFollow.map(f=>f.contentfollow.toString()))
+   const followset = new Set(userFollow.map(f => f.contentfollow.toString()));
+
 
     const result = contents.map(content => {
       const contentId = content._id.toString();

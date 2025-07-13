@@ -23,7 +23,7 @@ app.use('/api/content',content)
 app.use('/api/comment',comment)
 app.use('/api/like',like)
 // app.use('/api/Follow',Follow)
-app.use('/api/Event',Event)
+app.use('/api/events',Event)
 app.use('/api/rate',rate)
 
 
